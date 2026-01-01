@@ -28,43 +28,69 @@ export default function CategorySection({
 
   return (
     <div className="relative">
-      {/* HORIZONTAL SCROLL CONTAINER */}
+      {/* HORIZONTAL SCROLL */}
       <div
         className="
-          flex gap-4 overflow-x-auto pb-2 
+          flex gap-5 overflow-x-auto pb-3
           snap-x snap-mandatory
           scrollbar-hide
         "
       >
-        {data?.data.map((cat: Category) => (
-          <button
-            key={cat._id}
-            onClick={() => onSelect(cat._id)}
-            className={`
-              snap-start
-              min-w-[120px]
-              rounded-xl p-4
-              flex flex-col items-center gap-2
-              transition
-              hover:shadow-md
-              ${
-                selectedId === cat._id
-                  ? "border-2 border-blue-600 bg-blue-50"
-                  : "border border-gray-200 bg-white"
-              }
-            `}
-          >
-            <Image
-              src={cat.icon}
-              alt={cat.name}
-              width={56}
-              height={56}
-              className="object-contain"
-            />
+        {data?.data.map((cat: Category) => {
+          const isActive = selectedId === cat._id;
 
-            <span className="text-sm font-medium text-center">{cat.name}</span>
-          </button>
-        ))}
+          return (
+            <button
+              key={cat._id}
+              onClick={() => onSelect(cat._id)}
+              className={`
+                snap-start
+                min-w-35
+                h-37.5
+                rounded-2xl
+                border
+                bg-white
+                flex flex-col items-center justify-center
+                gap-3
+                transition-all duration-200
+                hover:shadow-lg hover:-translate-y-0.5
+                ${
+                  isActive
+                    ? "border-blue-600 ring-2 ring-blue-100"
+                    : "border-gray-200"
+                }
+              `}
+            >
+              {/* IMAGE HOLDER */}
+              <div
+                className={`
+                  h-16 w-16 rounded-full
+                  flex items-center justify-center
+                  transition
+                  ${isActive ? "bg-blue-50" : "bg-gray-100"}
+                `}
+              >
+                <Image
+                  src={cat.icon}
+                  alt={cat.name}
+                  width={36}
+                  height={36}
+                  className="object-contain"
+                />
+              </div>
+
+              {/* TITLE */}
+              <span
+                className={`
+                  text-sm font-semibold text-center
+                  ${isActive ? "text-blue-600" : "text-gray-700"}
+                `}
+              >
+                {cat.name}
+              </span>
+            </button>
+          );
+        })}
       </div>
     </div>
   );

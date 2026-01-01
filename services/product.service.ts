@@ -17,3 +17,44 @@ export async function getProductBySlug(slug: string) {
   if (!res.ok) throw new Error("Failed to fetch product");
   return res.json();
 }
+
+export async function getLatestProducts() {
+  const res = await fetch(`${BASE_URL}/api/user/products/latest`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch products");
+  return res.json();
+}
+
+export async function getBestSellerProducts() {
+  const res = await fetch(`${BASE_URL}/api/user/products/best-seller`, {
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error("Failed to fetch best sellers");
+  return res.json();
+}
+
+export async function getTopRatedProducts() {
+  const res = await fetch(`${BASE_URL}/api/user/products/top-rated`, {
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error("Failed to fetch top rated");
+  return res.json();
+}
+
+export async function getDiscountProducts() {
+  const res = await fetch(`${BASE_URL}/api/user/products/discounts`, {
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error("Failed to fetch discount products");
+  return res.json();
+}
+
+export async function getDealOfDayProducts() {
+  const res = await fetch(`${BASE_URL}/api/user/products/deal-of-day`, {
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error("Failed to fetch deal of the day");
+  return res.json();
+}
