@@ -58,3 +58,22 @@ export async function getDealOfDayProducts() {
   if (!res.ok) throw new Error("Failed to fetch deal of the day");
   return res.json();
 }
+
+export async function getProductById(productId: string) {
+  const res = await fetch(`${BASE_URL}/api/user/products/${productId}`, {
+    cache: "no-store",
+  });
+
+  if (!res.ok) throw new Error("Failed to fetch product");
+  return res.json();
+}
+
+export async function getSimilarProducts(productId: string) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/user/products/${productId}/similar`,
+    { cache: "no-store" }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch similar products");
+  return res.json();
+}

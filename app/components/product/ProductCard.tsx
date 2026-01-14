@@ -41,8 +41,8 @@ export default function ProductCard({ product }: { product: Product }) {
       className="
         group
         block
-        w-[200px]
-        h-[340px]          /* 🔒 FIXED HEIGHT */
+        w-50
+        h-85          /* 🔒 FIXED HEIGHT */
         rounded-2xl
         bg-white
         border
@@ -53,7 +53,7 @@ export default function ProductCard({ product }: { product: Product }) {
       "
     >
       {/* IMAGE AREA (FIXED) */}
-      <div className="relative h-[180px] bg-gray-50">
+      <div className="relative h-45 bg-gray-50">
         {image ? (
           <Image
             src={image}
