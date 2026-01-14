@@ -77,3 +77,47 @@ export async function getSimilarProducts(productId: string) {
   if (!res.ok) throw new Error("Failed to fetch similar products");
   return res.json();
 }
+
+export async function getVisibleProducts(
+  categoryId?: string,
+  subCategoryId?: string
+) {
+  const params = new URLSearchParams();
+  if (categoryId) params.append("categoryId", categoryId);
+  if (subCategoryId) params.append("subCategoryId", subCategoryId);
+
+  const res = await fetch(
+    `${
+      process.env.NEXT_PUBLIC_API_URL
+    }/api/user/products/visible?${params.toString()}`,
+    { cache: "no-store" }
+  );
+
+  return res.json();
+}
+
+export async function filterProducts(payload: any) {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/api/user/products/filter`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    }
+  );
+
+  return res.json();
+}
+
+// export async function filterProducts(payload: any) {
+//   const res = await fetch(
+//     `${process.env.NEXT_PUBLIC_API_URL}/api/user/products/filter`,
+//     {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(payload),
+//     }
+//   );
+
+//   return res.json();
+// }
